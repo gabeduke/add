@@ -7,13 +7,14 @@ db = TinyDB('db.json')
 User = Query()
 
 def main(args):
-    if "clear" in args.name:
-        db.purge()
-        return
 
     if "read" in args.name:
         for item in db:
             print(item.get('name'))
+        return
+    
+    if "clear" in args.name:
+        db.purge()
         return
 
     for i in args.name:
