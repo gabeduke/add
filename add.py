@@ -20,6 +20,10 @@ def main(args):
             print(item.get('name'))
         return
 
+    if "clear" in args.name:
+        db.purge()
+        return
+
     for i in args.name:
         db.insert({'name': i})
 
