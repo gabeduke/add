@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 
 import argparse
-from tinydb import TinyDB, Query
-
-db = TinyDB('db.json')
-User = Query()
+from tinydb import TinyDB
 
 
 def main(args):
+
+    if not args.db:
+        db = TinyDB('db.json')
+    else:
+        db = TinyDB('{}.json'.format(args.db))
+
     if "clear" in args.name:
         db.purge()
         return
@@ -29,6 +32,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "name", help="List of names (clear or read)", nargs='+'
         )
+
+    # Optional argument which requires a parameter (eg. -d test)
+    parser.add_argument("-db", "--database", action="store", dest="db")
 
     args = parser.parse_args()
     main(args)
