@@ -6,6 +6,7 @@ from tinydb import TinyDB, Query
 db = TinyDB('db.json')
 User = Query()
 
+
 def main(args):
     if "clear" in args.name:
         db.purge()
@@ -25,7 +26,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # Required positional argument
-    parser.add_argument("name", help="List of names (clear or read)", nargs='+')
+    parser.add_argument(
+        "name", help="List of names (clear or read)", nargs='+'
+        )
 
     args = parser.parse_args()
     main(args)
