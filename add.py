@@ -6,22 +6,15 @@ from tinydb import TinyDB
 
 def main(args):
 
-    if not args.db:
-        db = TinyDB('db.json')
-    else:
-        db = TinyDB('{}.json'.format(args.db))
+    db = TinyDB('{}.json'.format(args.t))
 
-    if "clear" in args.name:
+    if args.c:
         db.purge()
         return
 
-    if "read" in args.name:
+    if args.r:
         for item in db:
             print(item.get('name'))
-        return
-
-    if "clear" in args.name:
-        db.purge()
         return
 
     for i in args.name:
@@ -34,11 +27,16 @@ if __name__ == "__main__":
 
     # Required positional argument
     parser.add_argument(
-        "name", help="List of names (clear or read)", nargs='+'
+        "name", help="List of items", nargs='*'
         )
 
+    parser.add_argument('-c', action='store_true', help='clear the list')
+
+    parser.add_argument('-r', action='store_true', help='read the list')
+
     # Optional argument which requires a parameter (eg. -d test)
-    parser.add_argument("-db", "--database", action="store", dest="db")
+    parser.add_argument("-t", action="store",
+                        default='default', help='list title')
 
     args = parser.parse_args()
     main(args)
