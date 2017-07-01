@@ -38,7 +38,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', action='store_true', help='read the list')
 
     # Optional argument which requires a parameter (eg. -d test)
-    parser.add_argument("-t", action="store",
+    parser.add_argument("-t", action="store", required=True,
                         default='default', help='list title')
 
     args = parser.parse_args()
