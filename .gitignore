@@ -147,3 +147,4 @@ ENV/
 /.idea/vcs.xml
 /.idea/modules.xml
 /.idea/workspace.xml
+*.json
