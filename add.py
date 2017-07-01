@@ -10,13 +10,16 @@ def main(args):
 
     if args.c:
         db.purge()
+        print('({}): clear'.format(args.t))
         return
 
     if args.r:
+        print('({}): read'.format(args.t))
         for item in db:
             print(item.get('name'))
         return
 
+    print('({}): update\n{}'.format(args.t, args.name))
     for i in args.name:
         db.insert({'name': i})
 
